@@ -1,15 +1,32 @@
 import React, { Fragment, Component } from "react";
 
+///components
+import PersonalForm from "./components/PersonalForm";
+import EducationForm from "./components/EducationForm";
+import ExperienceForm from "./components/ExperienceForm";
+import Summary from "./components/Summary";
+
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      name: "fred",
+      fullName: "",
       phone: "",
       email: "",
+      fullNameInput: "fred",
+      phoneInput: "",
+      emailInput: "",
       education: [],
       experience: [],
+      schoolInput: "",
+      subjectInput: "",
+      graduationYearInput: "",
+      companyInput: "",
+      jobTitleInput: "",
+      dutiesInput: "",
+      yearFromInput: "",
+      yearToInput: "",
     };
   }
 
@@ -17,24 +34,100 @@ class App extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
-  onSubmit = (e) => {
+  onSubmitPersonal = (e) => {
     e.preventDefault();
-    console.log(this.state.name);
-    console.log(this.state.phone);
+    this.setState({
+      fullName: this.state.fullNameInput,
+      phone: this.state.phoneInput,
+      email: this.state.emailInput,
+    });
+  };
+
+  onSubmitEducation = (e) => {
+    e.preventDefault();
+    this.setState({
+      education: [
+        ...this.state.education,
+        {
+          school: this.state.schoolInput,
+          subject: this.state.subjectInput,
+          year: this.state.graduationYearInput,
+        },
+      ],
+    });
+  };
+
+  onSubmitExperience = (e) => {
+    e.preventDefault();
+    this.setState({
+      experience: [
+        ...this.state.experience,
+        {
+          company: this.state.companyInput,
+          subject: this.state.jobTitleInput,
+          duties: this.state.dutiesInput,
+          yearFrom: this.state.yearFromInput,
+          yearTo: this.state.yearToInput,
+        },
+      ],
+    });
+    this.setState({
+      schoolInput: "",
+      subjectInput: "",
+      graduationYearInput: "",
+    });
   };
 
   render() {
-    const { name, phone, email, education, experience } = this.state;
+    const {
+      fullName,
+      email,
+      phone,
+      fullNameInput,
+      phoneInput,
+      emailInput,
+      schoolInput,
+      subjectInput,
+      graduationYearInput,
+      companyInput,
+      jobTitleInput,
+      dutiesInput,
+      yearFromInput,
+      yearToInput,
+      education,
+      experience,
+    } = this.state;
+    const personalInputs = { fullNameInput, phoneInput, emailInput };
+    const educationInputs = { schoolInput, subjectInput, graduationYearInput };
+    const experienceInputs = {
+      companyInput,
+      jobTitleInput,
+      dutiesInput,
+      yearFromInput,
+      yearToInput,
+    };
     return (
       <Fragment>
-        <input name="name" id="name" value={name} onChange={this.changeInput} />
-        <input
-          name="phone"
-          id="phone"
-          value={phone}
-          onChange={this.changeInput}
+        <PersonalForm
+          info={personalInputs}
+          changeInput={this.changeInput}
+          onSubmitPersonal={this.onSubmitPersonal}
         />
-        <button onClick={this.onSubmit}>Submit</button>
+        <EducationForm
+          info={educationInputs}
+          changeInput={this.changeInput}
+          onSubmitEducation={this.onSubmitEducation}
+        />
+        <ExperienceForm
+          info={experienceInputs}
+          changeInput={this.changeInput}
+          onSubmitExperience={this.onSubmitExperience}
+        />
+        <Summary
+          personal={{ fullName, email, phone }}
+          education={education}
+          experience={experience}
+        />
       </Fragment>
     );
   }
