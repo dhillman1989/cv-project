@@ -1,0 +1,14 @@
+.experienceForm {
+  background-color: rgb(70, 187, 233);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100vw / 3);
+  padding: 40px;
+}
+
+.experienceForm input,
+.experienceForm button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}

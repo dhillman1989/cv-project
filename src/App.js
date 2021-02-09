@@ -1,4 +1,6 @@
 import React, { Fragment, Component } from "react";
+import { v4 as uuidv4 } from "uuid";
+import "./styles/app.css";
 
 ///components
 import PersonalForm from "./components/PersonalForm";
@@ -14,7 +16,7 @@ class App extends Component {
       fullName: "",
       phone: "",
       email: "",
-      fullNameInput: "fred",
+      fullNameInput: "",
       phoneInput: "",
       emailInput: "",
       education: [],
@@ -49,11 +51,17 @@ class App extends Component {
       education: [
         ...this.state.education,
         {
+          id: uuidv4(),
           school: this.state.schoolInput,
           subject: this.state.subjectInput,
           year: this.state.graduationYearInput,
         },
       ],
+    });
+    this.setState({
+      schoolInput: "",
+      subjectInput: "",
+      graduationYearInput: "",
     });
   };
 
@@ -63,8 +71,9 @@ class App extends Component {
       experience: [
         ...this.state.experience,
         {
+          id: uuidv4(),
           company: this.state.companyInput,
-          subject: this.state.jobTitleInput,
+          jobTitle: this.state.jobTitleInput,
           duties: this.state.dutiesInput,
           yearFrom: this.state.yearFromInput,
           yearTo: this.state.yearToInput,
@@ -72,9 +81,23 @@ class App extends Component {
       ],
     });
     this.setState({
-      schoolInput: "",
-      subjectInput: "",
-      graduationYearInput: "",
+      companyInput: "",
+      jobTitleInput: "",
+      dutiesInput: "",
+      yearFromInput: "",
+      yearToInput: "",
+    });
+  };
+
+  deleteExperience = (id) => {
+    this.setState({
+      experience: [...this.state.experience.filter((exp) => exp.id != id)],
+    });
+  };
+
+  deleteEducation = (id) => {
+    this.setState({
+      education: [...this.state.education.filter((edu) => edu.id != id)],
     });
   };
 
@@ -107,7 +130,7 @@ class App extends Component {
       yearToInput,
     };
     return (
-      <Fragment>
+      <div id="App">
         <PersonalForm
           info={personalInputs}
           changeInput={this.changeInput}
@@ -127,8 +150,10 @@ class App extends Component {
           personal={{ fullName, email, phone }}
           education={education}
           experience={experience}
+          deleteExperience={this.deleteExperience}
+          deleteEducation={this.deleteEducation}
         />
-      </Fragment>
+      </div>
     );
   }
 }

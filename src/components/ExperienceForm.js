@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import "../styles/experienceForm.css";
 
 class ExperienceForm extends Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class ExperienceForm extends Component {
     } = this.props.info;
     const { onSubmitExperience, changeInput } = this.props;
     return (
-      <Fragment>
+      <form onSubmit={onSubmitExperience} className="form experienceForm">
         <h1>Experience</h1>
         <label htmlFor="companyInput">Company</label>
         <input
@@ -25,6 +26,7 @@ class ExperienceForm extends Component {
           id="companyInput"
           value={companyInput}
           onChange={this.changeInput}
+          required
         />
         <label htmlFor="jobTitleInput">Job Title</label>
         <input
@@ -32,9 +34,10 @@ class ExperienceForm extends Component {
           id="jobTitleInput"
           value={jobTitleInput}
           onChange={this.changeInput}
+          required
         />
-        <label htmlFor="dutiesInput">Duties</label>
-        <input
+        <label htmlFor="dutiesInput">Duties (optional)</label>
+        <textarea
           name="dutiesInput"
           id="dutiesInput"
           value={dutiesInput}
@@ -46,6 +49,7 @@ class ExperienceForm extends Component {
           id="yearFromInput"
           value={yearFromInput}
           onChange={this.changeInput}
+          required
         />
         <label htmlFor="yearToInput">To</label>
         <input
@@ -53,9 +57,10 @@ class ExperienceForm extends Component {
           id="yearToInput"
           value={yearToInput}
           onChange={this.changeInput}
+          required
         />
-        <button onClick={onSubmitExperience}>Submit</button>
-      </Fragment>
+        <button>Add Experience</button>
+      </form>
     );
   }
 }

@@ -1,0 +1,14 @@
+.educationForm {
+  background-color: skyblue;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: calc(100vw / 3);
+  padding: 40px;
+}
+
+.educationForm input,
+.educationForm button {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}

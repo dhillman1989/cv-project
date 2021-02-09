@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from "react";
+import "../styles/educationForm.css";
 
 class EducationForm extends Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class EducationForm extends Component {
     const { schoolInput, subjectInput, graduationYearInput } = this.props.info;
     const { onSubmitEducation, changeInput } = this.props;
     return (
-      <Fragment>
+      <form onSubmit={onSubmitEducation} className="form educationForm">
         <h1>Education </h1>
         <label htmlFor="schoolInput">School</label>
         <input
@@ -19,6 +20,7 @@ class EducationForm extends Component {
           id="schoolInput"
           value={schoolInput}
           onChange={this.changeInput}
+          required
         />
         <label htmlFor="subjectInput">Subject</label>
         <input
@@ -26,6 +28,7 @@ class EducationForm extends Component {
           id="subjectInput"
           value={subjectInput}
           onChange={this.changeInput}
+          required
         />
         <label htmlFor="graduationYearInput">Year Graduated</label>
         <input
@@ -33,9 +36,10 @@ class EducationForm extends Component {
           id="graduationYearInput"
           value={graduationYearInput}
           onChange={changeInput}
+          required
         />
-        <button onClick={onSubmitEducation}>Submit</button>
-      </Fragment>
+        <button>Add Education</button>
+      </form>
     );
   }
 }
