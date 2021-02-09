@@ -29,9 +29,9 @@ class Summary extends Component {
           {education.length ? (
             education.map((edu) => (
               <li key={edu.id}>
-                <h3>School: {edu.school}</h3>
-                <h5>Subject of Study: {edu.subject}</h5>
-                <h5>Year: {edu.year}</h5>
+                <h3>{edu.school}</h3>
+                <p> {edu.subject}</p>
+                <p>Graduated: {edu.year}</p>
                 <button onClick={() => deleteEducation(edu.id)}>
                   Delete {edu.school}
                 </button>

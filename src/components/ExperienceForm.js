@@ -50,6 +50,7 @@ class ExperienceForm extends Component {
           value={yearFromInput}
           onChange={this.changeInput}
           required
+          pattern="[0-9]{4}"
         />
         <label htmlFor="yearToInput">To</label>
         <input
@@ -58,6 +59,7 @@ class ExperienceForm extends Component {
           value={yearToInput}
           onChange={this.changeInput}
           required
+          pattern="[0-9]{4}"
         />
         <button>Add Experience</button>
       </form>

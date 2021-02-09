@@ -29,6 +29,7 @@ class PersonalForm extends Component {
           value={phoneInput}
           onChange={this.changeInput}
           required
+          pattern="[0-9]{11}"
         />
         <label htmlFor="emailInput">Email </label>
         <input

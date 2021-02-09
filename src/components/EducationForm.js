@@ -37,6 +37,7 @@ class EducationForm extends Component {
           value={graduationYearInput}
           onChange={changeInput}
           required
+          pattern="[0-9]{4}"
         />
         <button>Add Education</button>
       </form>
