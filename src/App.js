@@ -7,6 +7,7 @@ import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
 import ShowCvControl from "./components/ShowCvControl";
+import GenerateCv from "./components/GenerateCv";
 
 class App extends Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class App extends Component {
 
     this.state = {
       showCV: false,
+      showWarning: false,
       fullName: "",
       phone: "",
       email: "",
@@ -103,11 +105,23 @@ class App extends Component {
   };
 
   toggleMode = () => {
-    this.setState({ showCV: !this.state.showCV });
+    if (
+      this.state.fullName.length &&
+      this.state.phone.length &&
+      this.state.education.length &&
+      this.state.email.length &&
+      this.state.experience.length
+    ) {
+      this.setState({ showCV: !this.state.showCV, showWarning: false });
+    } else {
+      this.setState({ showWarning: true });
+    }
   };
 
   render() {
     const {
+      showCV,
+      showWarning,
       fullName,
       email,
       phone,
@@ -134,29 +148,46 @@ class App extends Component {
       yearFromInput,
       yearToInput,
     };
+
+    //activate or disable Submission button
+
     return (
       <div id="App">
-        <PersonalForm
-          formInputs={personalInputs}
-          personal={{ fullName, email, phone }}
-          changeInput={this.changeInput}
-          onSubmitPersonal={this.onSubmitPersonal}
-        />
-        <EducationForm
-          education={education}
-          formInputs={educationInputs}
-          changeInput={this.changeInput}
-          onSubmitEducation={this.onSubmitEducation}
-          deleteEducation={this.deleteEducation}
-        />
-        <ExperienceForm
-          experience={experience}
-          formInputs={experienceInputs}
-          changeInput={this.changeInput}
-          onSubmitExperience={this.onSubmitExperience}
-          deleteExperience={this.deleteExperience}
-        />
-        <ShowCvControl toggleMode={this.toggleMode} />
+        {showCV == false ? (
+          <Fragment>
+            <PersonalForm
+              formInputs={personalInputs}
+              personal={{ fullName, email, phone }}
+              changeInput={this.changeInput}
+              onSubmitPersonal={this.onSubmitPersonal}
+            />
+            <EducationForm
+              education={education}
+              formInputs={educationInputs}
+              changeInput={this.changeInput}
+              onSubmitEducation={this.onSubmitEducation}
+              deleteEducation={this.deleteEducation}
+            />
+            <ExperienceForm
+              experience={experience}
+              formInputs={experienceInputs}
+              changeInput={this.changeInput}
+              onSubmitExperience={this.onSubmitExperience}
+              deleteExperience={this.deleteExperience}
+            />
+            <ShowCvControl
+              toggleMode={this.toggleMode}
+              showWarning={showWarning}
+            />
+          </Fragment>
+        ) : (
+          <GenerateCv
+            personal={{ fullName, email, phone }}
+            experience={experience}
+            education={education}
+            toggleMode={this.toggleMode}
+          />
+        )}
       </div>
     );
   }
