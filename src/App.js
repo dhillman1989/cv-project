@@ -6,13 +6,14 @@ import "./styles/app.css";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
-import Summary from "./components/Summary";
+import ShowCvControl from "./components/ShowCvControl";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      showCV: false,
       fullName: "",
       phone: "",
       email: "",
@@ -101,6 +102,10 @@ class App extends Component {
     });
   };
 
+  toggleMode = () => {
+    this.setState({ showCV: !this.state.showCV });
+  };
+
   render() {
     const {
       fullName,
@@ -151,6 +156,7 @@ class App extends Component {
           onSubmitExperience={this.onSubmitExperience}
           deleteExperience={this.deleteExperience}
         />
+        <ShowCvControl toggleMode={this.toggleMode} />
       </div>
     );
   }

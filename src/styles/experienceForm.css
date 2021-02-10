@@ -4,6 +4,7 @@
   flex-direction: column;
   justify-content: flex-start;
   width: calc(100vw / 3);
+  height: 80vh;
   padding: 40px;
 }
 
