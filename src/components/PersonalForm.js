@@ -9,11 +9,11 @@ class PersonalForm extends Component {
   }
 
   render() {
-    const { fullNameInput, phoneInput, emailInput } = this.props.info;
-    const { onSubmitPersonal, changeInput } = this.props;
+    const { fullNameInput, phoneInput, emailInput } = this.props.formInputs;
+    const { personal, onSubmitPersonal, changeInput } = this.props;
     return (
       <form onSubmit={onSubmitPersonal} className="form personalForm">
-        <h1>Personal &amp; Contact Details</h1>
+        <h2>Personal &amp; Contact Details</h2>
         <label htmlFor="fullNameInput">Full Name</label>
         <input
           name="fullNameInput"
@@ -40,6 +40,12 @@ class PersonalForm extends Component {
           required
         />
         <button>Update Personal Details</button>
+
+        <p>Preview:</p>
+
+        <h2>{personal.fullName}</h2>
+        <p>{personal.email}</p>
+        <p>{personal.phone}</p>
       </form>
     );
   }

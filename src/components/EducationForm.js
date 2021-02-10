@@ -6,14 +6,24 @@ class EducationForm extends Component {
     super(props);
     this.changeInput = this.props.changeInput.bind(this);
     this.onSubmitEducation = this.props.onSubmitEducation.bind(this);
+    this.deleteEducation = this.props.deleteEducation.bind(this);
   }
 
   render() {
-    const { schoolInput, subjectInput, graduationYearInput } = this.props.info;
-    const { onSubmitEducation, changeInput } = this.props;
+    const {
+      schoolInput,
+      subjectInput,
+      graduationYearInput,
+    } = this.props.formInputs;
+    const {
+      education,
+      onSubmitEducation,
+      changeInput,
+      deleteEducation,
+    } = this.props;
     return (
       <form onSubmit={onSubmitEducation} className="form educationForm">
-        <h1>Education </h1>
+        <h2>Education </h2>
         <label htmlFor="schoolInput">School</label>
         <input
           name="schoolInput"
@@ -40,6 +50,24 @@ class EducationForm extends Component {
           pattern="[0-9]{4}"
         />
         <button>Add Education</button>
+
+        <p>Preview: </p>
+        <ul>
+          {education.length ? (
+            education.map((edu) => (
+              <li key={edu.id}>
+                <h3>{edu.school}</h3>
+                <p> {edu.subject}</p>
+                <p>Graduated: {edu.year}</p>
+                <button onClick={() => deleteEducation(edu.id)}>
+                  Delete {edu.school}
+                </button>
+              </li>
+            ))
+          ) : (
+            <p>No education</p>
+          )}
+        </ul>
       </form>
     );
   }

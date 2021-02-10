@@ -2,9 +2,13 @@
   background-color: skyblue;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: calc(100vw / 3);
   padding: 40px;
+}
+
+.educationForm h2 {
+  margin-bottom: 25px;
 }
 
 .educationForm input,

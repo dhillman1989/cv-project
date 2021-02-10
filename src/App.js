@@ -132,26 +132,24 @@ class App extends Component {
     return (
       <div id="App">
         <PersonalForm
-          info={personalInputs}
+          formInputs={personalInputs}
+          personal={{ fullName, email, phone }}
           changeInput={this.changeInput}
           onSubmitPersonal={this.onSubmitPersonal}
         />
         <EducationForm
-          info={educationInputs}
+          education={education}
+          formInputs={educationInputs}
           changeInput={this.changeInput}
           onSubmitEducation={this.onSubmitEducation}
+          deleteEducation={this.deleteEducation}
         />
         <ExperienceForm
-          info={experienceInputs}
+          experience={experience}
+          formInputs={experienceInputs}
           changeInput={this.changeInput}
           onSubmitExperience={this.onSubmitExperience}
-        />
-        <Summary
-          personal={{ fullName, email, phone }}
-          education={education}
-          experience={experience}
           deleteExperience={this.deleteExperience}
-          deleteEducation={this.deleteEducation}
         />
       </div>
     );

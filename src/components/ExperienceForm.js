@@ -6,6 +6,7 @@ class ExperienceForm extends Component {
     super(props);
     this.changeInput = this.props.changeInput.bind(this);
     this.onSubmitExperience = this.props.onSubmitExperience.bind(this);
+    this.deleteExperience = this.props.deleteExperience.bind(this);
   }
 
   render() {
@@ -15,11 +16,16 @@ class ExperienceForm extends Component {
       dutiesInput,
       yearToInput,
       yearFromInput,
-    } = this.props.info;
-    const { onSubmitExperience, changeInput } = this.props;
+    } = this.props.formInputs;
+    const {
+      experience,
+      onSubmitExperience,
+      changeInput,
+      deleteExperience,
+    } = this.props;
     return (
       <form onSubmit={onSubmitExperience} className="form experienceForm">
-        <h1>Experience</h1>
+        <h2>Experience</h2>
         <label htmlFor="companyInput">Company</label>
         <input
           name="companyInput"
@@ -62,6 +68,28 @@ class ExperienceForm extends Component {
           pattern="[0-9]{4}"
         />
         <button>Add Experience</button>
+
+        <p>Preview:</p>
+
+        <ul>
+          {experience.length ? (
+            experience.map((exp) => (
+              <li key={exp.id}>
+                <h3>Company: {exp.company}</h3>
+                <h5>Job Title: {exp.jobTitle}</h5>
+                <h5>
+                  Years: {exp.yearFrom} - {exp.yearTo}
+                </h5>
+                <p>Duties: {exp.duties}</p>
+                <button onClick={() => deleteExperience(exp.id)}>
+                  Delete {exp.company}
+                </button>
+              </li>
+            ))
+          ) : (
+            <p>No experience</p>
+          )}
+        </ul>
       </form>
     );
   }

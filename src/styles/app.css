@@ -4,10 +4,16 @@
   margin: 0;
 }
 
+body {
+  height: 100vh;
+}
+
 #App {
   font-family: arial;
   display: flex;
+  align-items: stretch;
   flex-wrap: wrap;
+  height: 100vh;
 }
 
 ul {
