@@ -19,12 +19,15 @@ class App extends Component {
       fullName: "",
       phone: "",
       email: "",
+      profile: "",
+      profileInput: "",
       fullNameInput: "",
       phoneInput: "",
       emailInput: "",
       education: [],
       experience: [],
       schoolInput: "",
+      eduDescInput: "",
       subjectInput: "",
       graduationYearInput: "",
       companyInput: "",
@@ -45,6 +48,7 @@ class App extends Component {
       fullName: this.state.fullNameInput,
       phone: this.state.phoneInput,
       email: this.state.emailInput,
+      profile: this.state.profileInput,
     });
   };
 
@@ -58,6 +62,7 @@ class App extends Component {
           school: this.state.schoolInput,
           subject: this.state.subjectInput,
           year: this.state.graduationYearInput,
+          desc: this.state.eduDescInput,
         },
       ],
     });
@@ -65,6 +70,7 @@ class App extends Component {
       schoolInput: "",
       subjectInput: "",
       graduationYearInput: "",
+      eduDescInput: "",
     });
   };
 
@@ -105,17 +111,18 @@ class App extends Component {
   };
 
   toggleMode = () => {
-    if (
-      this.state.fullName.length &&
-      this.state.phone.length &&
-      this.state.education.length &&
-      this.state.email.length &&
-      this.state.experience.length
-    ) {
-      this.setState({ showCV: !this.state.showCV, showWarning: false });
-    } else {
-      this.setState({ showWarning: true });
-    }
+    // if (
+    //   this.state.fullName.length &&
+    //   this.state.phone.length &&
+    //   this.state.education.length &&
+    //   this.state.email.length &&
+    //   this.state.experience.length
+    // ) {
+    //   this.setState({ showCV: !this.state.showCV, showWarning: false });
+    // } else {
+    //   this.setState({ showWarning: true });
+    // }
+    this.setState({ showCV: !this.state.showCV, showWarning: false });
   };
 
   render() {
@@ -125,6 +132,8 @@ class App extends Component {
       fullName,
       email,
       phone,
+      profile,
+      profileInput,
       fullNameInput,
       phoneInput,
       emailInput,
@@ -137,10 +146,21 @@ class App extends Component {
       yearFromInput,
       yearToInput,
       education,
+      eduDescInput,
       experience,
     } = this.state;
-    const personalInputs = { fullNameInput, phoneInput, emailInput };
-    const educationInputs = { schoolInput, subjectInput, graduationYearInput };
+    const personalInputs = {
+      fullNameInput,
+      phoneInput,
+      emailInput,
+      profileInput,
+    };
+    const educationInputs = {
+      schoolInput,
+      subjectInput,
+      eduDescInput,
+      graduationYearInput,
+    };
     const experienceInputs = {
       companyInput,
       jobTitleInput,
@@ -157,7 +177,7 @@ class App extends Component {
           <Fragment>
             <PersonalForm
               formInputs={personalInputs}
-              personal={{ fullName, email, phone }}
+              personal={{ fullName, email, phone, profile }}
               changeInput={this.changeInput}
               onSubmitPersonal={this.onSubmitPersonal}
             />
@@ -165,6 +185,7 @@ class App extends Component {
               education={education}
               formInputs={educationInputs}
               changeInput={this.changeInput}
+              eduDescInput={eduDescInput}
               onSubmitEducation={this.onSubmitEducation}
               deleteEducation={this.deleteEducation}
             />
@@ -175,19 +196,20 @@ class App extends Component {
               onSubmitExperience={this.onSubmitExperience}
               deleteExperience={this.deleteExperience}
             />
-            <ShowCvControl
-              toggleMode={this.toggleMode}
-              showWarning={showWarning}
-            />
           </Fragment>
         ) : (
           <GenerateCv
-            personal={{ fullName, email, phone }}
+            personal={{ fullName, email, phone, profile }}
             experience={experience}
             education={education}
             toggleMode={this.toggleMode}
           />
         )}
+        <ShowCvControl
+          showCV={showCV}
+          toggleMode={this.toggleMode}
+          showWarning={showWarning}
+        />
       </div>
     );
   }

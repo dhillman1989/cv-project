@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import "../styles/generateCv.css";
 
 class GenerateCv extends PureComponent {
   constructor(props) {
@@ -9,43 +10,50 @@ class GenerateCv extends PureComponent {
   render() {
     const { personal, education, experience, toggleMode } = this.props;
     return (
-      <div className="cv-page">
-        <div className="cv-page__personal">
-          <h1>{personal.fullName}</h1>
-          <p className="cv-page__email">{personal.email}</p>
-          <p className="cv-page__phone">{personal.phone}</p>
-        </div>
-        <div className="cv-page__education">
-          <ul>
-            {education.length ? (
-              education.map((edu) => (
-                <li key={edu.id} className="cv-page__education-item">
-                  <h2>{edu.school}</h2>
-                  <p>
-                    {edu.subject} - {edu.year}
-                  </p>
-                </li>
-              ))
-            ) : (
-              <li className="cv-page__empty"></li>
-            )}
-          </ul>
-        </div>
-        <div className="cv-page__experience">
-          <ul>
-            {experience.length ? (
-              experience.map((exp) => (
-                <li key={exp.id} className="cv-page__experience-item">
-                  <h2>{exp.company}</h2>
-                  <p>
-                    {exp.jobTitle} // {exp.yearFrom} {exp.yearTo}
-                  </p>
-                </li>
-              ))
-            ) : (
-              <li className="cv-page__empty"></li>
-            )}
-          </ul>
+      <div className="generateCv">
+        <div className="generateCv__page">
+          <div className="generateCv__personal">
+            <h1>{personal.fullName}</h1>
+            <p className="generateCv__email">{personal.email}</p>
+            <p className="generateCv__phone">{personal.phone}</p>
+          </div>
+          <div className="generateCv__profile">{personal.profile}</div>
+          <div className="generateCv__education">
+            <h2>Education History</h2>
+            <ul>
+              {education.length ? (
+                education.map((edu) => (
+                  <li key={edu.id} className="generateCv__education-item">
+                    <h3>{edu.school}</h3>
+                    <p className="generateCv__subject">
+                      {edu.subject} - {edu.year}
+                    </p>
+                    <p>{edu.desc}</p>
+                  </li>
+                ))
+              ) : (
+                <li className="generateCv__empty"></li>
+              )}
+            </ul>
+          </div>
+          <div className="generateCv__experience">
+            <h2>Work Experience</h2>
+            <ul>
+              {experience.length ? (
+                experience.map((exp) => (
+                  <li key={exp.id} className="generateCv__experience-item">
+                    <h3>{exp.company}</h3>
+                    <p className="generateCv__jobTitle">{exp.jobTitle}</p>
+                    <p>
+                      from {exp.yearFrom} to {exp.yearTo}
+                    </p>
+                  </li>
+                ))
+              ) : (
+                <li className="generateCv__empty"></li>
+              )}
+            </ul>
+          </div>
         </div>
       </div>
     );

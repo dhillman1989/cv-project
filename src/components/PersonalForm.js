@@ -9,7 +9,12 @@ class PersonalForm extends Component {
   }
 
   render() {
-    const { fullNameInput, phoneInput, emailInput } = this.props.formInputs;
+    const {
+      fullNameInput,
+      phoneInput,
+      emailInput,
+      profileInput,
+    } = this.props.formInputs;
     const { personal, onSubmitPersonal, changeInput } = this.props;
     return (
       <form onSubmit={onSubmitPersonal} className="form personalForm">
@@ -27,7 +32,7 @@ class PersonalForm extends Component {
           name="phoneInput"
           id="phoneInput"
           value={phoneInput}
-          onChange={this.changeInput}
+          onChange={changeInput}
           required
           pattern="[0-9]{11}"
         />
@@ -39,6 +44,14 @@ class PersonalForm extends Component {
           onChange={changeInput}
           required
         />
+        <label htmlFor="profileInput">Personal Paragraph</label>
+        <textarea
+          name="profileInput"
+          id="profileInput"
+          value={profileInput}
+          onChange={changeInput}
+          required
+        />
         <button>Update Personal Details</button>
 
         <p>Preview:</p>
@@ -46,6 +59,7 @@ class PersonalForm extends Component {
         <h2>{personal.fullName}</h2>
         <p>{personal.email}</p>
         <p>{personal.phone}</p>
+        <p>{personal.profile}</p>
       </form>
     );
   }

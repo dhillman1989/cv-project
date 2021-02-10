@@ -1,0 +1,72 @@
+.generateCv {
+  padding: 10vh 0 25vh 0;
+  width: 100vw;
+  background-color: rgb(232, 248, 255);
+}
+
+.generateCv__page {
+  width: 60vw;
+  height: 80vw;
+  border: 1px solid #000;
+  background-color: #fff;
+  box-shadow: 5px 8px 1px 1px rgb(133, 133, 133);
+  margin: 25px auto;
+  padding: 5rem;
+}
+
+.generateCv h1 {
+  text-transform: capitalize;
+  font-size: 6rem;
+}
+
+.generateCv h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+  text-transform: capitalize;
+}
+
+.generateCv h3 {
+  font-size: 2rem;
+  text-transform: capitalize;
+}
+
+.generateCv__personal {
+  padding-left: 20px;
+  border-left: 20px solid #000;
+}
+
+.generateCv__email {
+  font-size: 1.8rem;
+  text-transform: capitalize;
+}
+
+.generateCv__phone {
+  font-size: 1.8rem;
+  line-height: 3rem;
+  font-style: italic;
+}
+
+.generateCv__profile {
+  padding: 40px;
+  font-size: 1.8rem;
+}
+
+.generateCv__education,
+.generateCv__experience {
+  padding-left: 40px;
+  margin-top: 5rem;
+}
+
+.generateCv__education-item,
+.generateCv__experience-item {
+  margin-top: 3rem;
+}
+
+.generateCv__subject,
+.generateCv__jobTitle {
+  font-weight: 600;
+  font-style: oblique;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+}

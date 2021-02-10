@@ -13,6 +13,7 @@ class EducationForm extends Component {
     const {
       schoolInput,
       subjectInput,
+      eduDescInput,
       graduationYearInput,
     } = this.props.formInputs;
     const {
@@ -37,6 +38,14 @@ class EducationForm extends Component {
           name="subjectInput"
           id="subjectInput"
           value={subjectInput}
+          onChange={this.changeInput}
+          required
+        />
+        <label htmlFor="eduDescInput">Description</label>
+        <textarea
+          name="eduDescInput"
+          id="eduDescInput"
+          value={eduDescInput}
           onChange={this.changeInput}
           required
         />

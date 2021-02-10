@@ -8,10 +8,12 @@ class ShowCvControl extends Component {
   }
 
   render() {
-    const { toggleMode, showWarning } = this.props;
+    const { toggleMode, showWarning, showCV } = this.props;
     return (
       <div className="showCvControl">
-        <button onClick={() => toggleMode()}>Generate CV</button>
+        <button onClick={() => toggleMode()}>
+          {showCV ? " Edit CV" : "Generate CV"}
+        </button>
         {showWarning && (
           <p className="showCvControl__warning">
             Make sure you have provided your contact details, and added at least
