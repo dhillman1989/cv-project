@@ -1,0 +1,8 @@
+.editExperience {
+  width: 50%;
+  min-width: 360px;
+  background-color: #000;
+  position: absolute;
+  top: 0;
+  left: 0;
+}

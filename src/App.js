@@ -8,12 +8,15 @@ import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
 import ShowCvControl from "./components/ShowCvControl";
 import GenerateCv from "./components/GenerateCv";
+import EditEducation from "./components/EditEducation";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      editingEducation: { status: false, data: null },
+      editingExperience: { status: false, data: null },
       showCV: false,
       showWarning: false,
       fullName: "",
@@ -98,6 +101,16 @@ class App extends Component {
     });
   };
 
+  loadEditEducation = (e, id) => {
+    e.preventDefault();
+    console.log("loading");
+    let data = this.state.education.find((edu) => edu.id == id);
+    console.log(data);
+    this.setState({
+      editingEducation: { status: true, data: data },
+    });
+  };
+
   deleteExperience = (id) => {
     this.setState({
       experience: [...this.state.experience.filter((exp) => exp.id != id)],
@@ -127,6 +140,8 @@ class App extends Component {
 
   render() {
     const {
+      editingEducation,
+      editingExperience,
       showCV,
       showWarning,
       fullName,
@@ -188,6 +203,7 @@ class App extends Component {
               eduDescInput={eduDescInput}
               onSubmitEducation={this.onSubmitEducation}
               deleteEducation={this.deleteEducation}
+              loadEditEducation={this.loadEditEducation}
             />
             <ExperienceForm
               experience={experience}
@@ -196,6 +212,9 @@ class App extends Component {
               onSubmitExperience={this.onSubmitExperience}
               deleteExperience={this.deleteExperience}
             />
+            {editingEducation.status == true && (
+              <EditEducation data={editingEducation.data} />
+            )}
           </Fragment>
         ) : (
           <GenerateCv
