@@ -15,8 +15,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-      editingEducation: { status: false, data: null },
-      editingExperience: { status: false, data: null },
+      editingEducation: false,
+      editingExperience: false,
       showCV: false,
       showWarning: false,
       fullName: "",
@@ -38,6 +38,17 @@ class App extends Component {
       dutiesInput: "",
       yearFromInput: "",
       yearToInput: "",
+      editEduId: "",
+      editSchool: "",
+      editSubject: "",
+      editDesc: "",
+      editYear: "",
+      editExpId: "",
+      editCompany: "",
+      editJobTitle: "",
+      editDuties: "",
+      editYearFrom: "",
+      editYearTo: "",
     };
   }
 
@@ -107,19 +118,38 @@ class App extends Component {
     let data = this.state.education.find((edu) => edu.id == id);
     console.log(data);
     this.setState({
-      editingEducation: { status: true, data: data },
+      editingEducation: true,
+      editSchool: data.school,
+      editSubject: data.subject,
+      editDesc: data.desc,
+      editYear: data.year,
+      editEduId: data.id,
+    });
+  };
+
+  updateEducation = (e, id) => {
+    e.preventDefault();
+    let index = this.state.education.findIndex((edu) => edu.id == id);
+    const newObj = [...this.state.education];
+
+    newObj.splice(index, 1, {
+      school: this.state.editSchool,
+      subject: this.state.editSubject,
+      year: this.state.editYear,
+      desc: this.state.editDesc,
+    });
+    this.setState({ education: newObj, editingEducation: false });
+  };
+
+  deleteEducation = (id) => {
+    this.setState({
+      education: [...this.state.education.filter((edu) => edu.id != id)],
     });
   };
 
   deleteExperience = (id) => {
     this.setState({
       experience: [...this.state.experience.filter((exp) => exp.id != id)],
-    });
-  };
-
-  deleteEducation = (id) => {
-    this.setState({
-      education: [...this.state.education.filter((edu) => edu.id != id)],
     });
   };
 
@@ -163,6 +193,12 @@ class App extends Component {
       education,
       eduDescInput,
       experience,
+      editSchool,
+      editSubject,
+      editDesc,
+      editYear,
+      editExpId,
+      editEduId,
     } = this.state;
     const personalInputs = {
       fullNameInput,
@@ -212,8 +248,18 @@ class App extends Component {
               onSubmitExperience={this.onSubmitExperience}
               deleteExperience={this.deleteExperience}
             />
-            {editingEducation.status == true && (
-              <EditEducation data={editingEducation.data} />
+            {editingEducation && (
+              <EditEducation
+                data={{
+                  editSchool,
+                  editSubject,
+                  editDesc,
+                  editYear,
+                  editEduId,
+                }}
+                changeInput={this.changeInput}
+                updateEducation={this.updateEducation}
+              />
             )}
           </Fragment>
         ) : (
