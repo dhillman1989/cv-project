@@ -25,8 +25,8 @@ class EducationForm extends Component {
       loadEditEducation,
     } = this.props;
     return (
-      <Fragment>
-        <form onSubmit={onSubmitEducation} className="form educationForm">
+      <div className="educationForm">
+        <form onSubmit={onSubmitEducation}>
           <h2>Education </h2>
           <label htmlFor="schoolInput">School</label>
           <input
@@ -84,7 +84,7 @@ class EducationForm extends Component {
             )}
           </ul>
         </form>
-      </Fragment>
+      </div>
     );
   }
 }

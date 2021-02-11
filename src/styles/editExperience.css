@@ -1,8 +1,17 @@
 .editExperience {
   width: 50%;
   min-width: 360px;
+  height: 20vh;
+  padding: 4rem;
   background-color: #000;
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 50;
+}
+
+.editExperience form {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
 }

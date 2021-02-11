@@ -16,7 +16,7 @@ body {
 #App {
   font-family: arial;
   display: flex;
-  align-items: stretch;
+  align-items: flex-start;
   flex-wrap: wrap;
   height: 100vh;
 }

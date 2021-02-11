@@ -6,15 +6,16 @@ import "./styles/app.css";
 import PersonalForm from "./components/PersonalForm";
 import EducationForm from "./components/EducationForm";
 import ExperienceForm from "./components/ExperienceForm";
-import ShowCvControl from "./components/ShowCvControl";
+import CvControl from "./components/CvControl";
 import GenerateCv from "./components/GenerateCv";
 import EditEducation from "./components/EditEducation";
+import EditExperience from "./components/EditExperience";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
+    this.state = JSON.parse(localStorage.getItem("CvState")) || {
       editingEducation: false,
       editingExperience: false,
       showCV: false,
@@ -114,9 +115,7 @@ class App extends Component {
 
   loadEditEducation = (e, id) => {
     e.preventDefault();
-    console.log("loading");
     let data = this.state.education.find((edu) => edu.id == id);
-    console.log(data);
     this.setState({
       editingEducation: true,
       editSchool: data.school,
@@ -124,6 +123,20 @@ class App extends Component {
       editDesc: data.desc,
       editYear: data.year,
       editEduId: data.id,
+    });
+  };
+
+  loadEditExperience = (e, id) => {
+    e.preventDefault();
+    let data = this.state.experience.find((exp) => exp.id == id);
+    this.setState({
+      editingExperience: true,
+      editCompany: data.company,
+      editJobTitle: data.jobTitle,
+      editDuties: data.duties,
+      editYearTo: data.yearTo,
+      editYearFrom: data.yearFrom,
+      editExpId: data.id,
     });
   };
 
@@ -147,6 +160,22 @@ class App extends Component {
     });
   };
 
+  updateExperience = (e, id) => {
+    e.preventDefault();
+    let index = this.state.experience.findIndex((exp) => exp.id == id);
+    const newObj = [...this.state.experience];
+
+    newObj.splice(index, 1, {
+      id,
+      company: this.state.editCompany,
+      jobTitle: this.state.editJobTitle,
+      yearFrom: this.state.editYearFrom,
+      yearTo: this.state.editYearTo,
+      duties: this.state.editDuties,
+    });
+    this.setState({ experience: newObj, editingExperience: false });
+  };
+
   deleteExperience = (id) => {
     this.setState({
       experience: [...this.state.experience.filter((exp) => exp.id != id)],
@@ -154,18 +183,21 @@ class App extends Component {
   };
 
   toggleMode = () => {
-    // if (
-    //   this.state.fullName.length &&
-    //   this.state.phone.length &&
-    //   this.state.education.length &&
-    //   this.state.email.length &&
-    //   this.state.experience.length
-    // ) {
-    //   this.setState({ showCV: !this.state.showCV, showWarning: false });
-    // } else {
-    //   this.setState({ showWarning: true });
-    // }
-    this.setState({ showCV: !this.state.showCV, showWarning: false });
+    if (
+      this.state.fullName.length &&
+      this.state.phone.length &&
+      this.state.education.length &&
+      this.state.email.length &&
+      this.state.experience.length
+    ) {
+      this.setState({ showCV: !this.state.showCV, showWarning: false });
+    } else {
+      this.setState({ showWarning: true });
+    }
+  };
+
+  saveForLater = () => {
+    localStorage.setItem("CvState", JSON.stringify(this.state));
   };
 
   render() {
@@ -197,8 +229,13 @@ class App extends Component {
       editSubject,
       editDesc,
       editYear,
-      editExpId,
       editEduId,
+      editCompany,
+      editJobTitle,
+      editDuties,
+      editYearFrom,
+      editYearTo,
+      editExpId,
     } = this.state;
     const personalInputs = {
       fullNameInput,
@@ -247,6 +284,7 @@ class App extends Component {
               changeInput={this.changeInput}
               onSubmitExperience={this.onSubmitExperience}
               deleteExperience={this.deleteExperience}
+              loadEditExperience={this.loadEditExperience}
             />
             {editingEducation && (
               <EditEducation
@@ -261,6 +299,20 @@ class App extends Component {
                 updateEducation={this.updateEducation}
               />
             )}
+            {editingExperience && (
+              <EditExperience
+                data={{
+                  editCompany,
+                  editJobTitle,
+                  editDuties,
+                  editYearFrom,
+                  editYearTo,
+                  editExpId,
+                }}
+                changeInput={this.changeInput}
+                updateExperience={this.updateExperience}
+              />
+            )}
           </Fragment>
         ) : (
           <GenerateCv
@@ -270,10 +322,11 @@ class App extends Component {
             toggleMode={this.toggleMode}
           />
         )}
-        <ShowCvControl
+        <CvControl
           showCV={showCV}
           toggleMode={this.toggleMode}
           showWarning={showWarning}
+          saveForLater={this.saveForLater}
         />
       </div>
     );
