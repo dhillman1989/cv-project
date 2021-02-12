@@ -197,10 +197,13 @@ class App extends Component {
   };
 
   saveForLater = () => {
-    localStorage.setItem("CvState", JSON.stringify(this.state));
+    localStorage.setItem(
+      "CvState",
+      JSON.stringify({ ...this.state, showWarning: false })
+    );
     let btn = document.querySelector("#saveForLaterBtn");
     btn.innerText = "Saved";
-    btn.style.backgroundColor = "#0B8148";
+    btn.style.backgroundColor = "rgb(148, 200, 0)";
     setTimeout(() => {
       btn.innerText = "Save For Later";
       btn.style.backgroundColor = "rgb(11, 165, 236)";

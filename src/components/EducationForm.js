@@ -85,6 +85,9 @@ class EducationForm extends Component {
             )}
           </ul>
         </form>
+        {education.length > 0 && (
+          <i class="far fa-check-circle educationForm__completeMarker" />
+        )}
       </div>
     );
   }

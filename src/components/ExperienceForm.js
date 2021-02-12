@@ -97,6 +97,9 @@ class ExperienceForm extends Component {
             )}
           </ul>
         </form>
+        {experience.length > 0 && (
+          <i class="far fa-check-circle experienceForm__completeMarker" />
+        )}
       </div>
     );
   }

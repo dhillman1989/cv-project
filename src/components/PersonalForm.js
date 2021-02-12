@@ -62,6 +62,12 @@ class PersonalForm extends Component {
           <p>{personal.phone}</p>
           <p>{personal.profile}</p>
         </form>
+        {personal.fullname !== "" &&
+          personal.email !== "" &&
+          personal.phone !== "" &&
+          personal.profile !== "" && (
+            <i class="far fa-check-circle personalForm__completeMarker" />
+          )}
       </div>
     );
   }

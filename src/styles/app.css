@@ -24,3 +24,11 @@ body {
 ul {
   list-style-type: none;
 }
+
+@media only screen and (max-width: 400px) {
+  #App {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+  }
+}
