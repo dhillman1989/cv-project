@@ -13,7 +13,9 @@ class CvControl extends Component {
     return (
       <div className="CvControl">
         <div className="buttons">
-          <button onClick={() => saveForLater()}>Save For Later</button>
+          <button id="saveForLaterBtn" onClick={() => saveForLater()}>
+            Save For Later
+          </button>
           <button onClick={() => toggleMode()}>
             {showCV ? "Edit CV" : "Generate CV"}
           </button>

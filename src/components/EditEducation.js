@@ -29,7 +29,7 @@ class EditEducation extends Component {
             onChange={changeInput}
           />
           <label htmlFor="editDesc">Description</label>
-          <input
+          <textarea
             id="editDesc"
             name="editDesc"
             value={data.editDesc}

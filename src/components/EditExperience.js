@@ -29,7 +29,7 @@ class EditExperience extends Component {
             onChange={changeInput}
           />
           <label htmlFor="editDuties">Description</label>
-          <input
+          <textarea
             id="editDuties"
             name="editDuties"
             value={data.editDuties}

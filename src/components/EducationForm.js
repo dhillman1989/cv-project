@@ -71,6 +71,7 @@ class EducationForm extends Component {
                   <h3>{edu.school}</h3>
                   <p> {edu.subject}</p>
                   <p>Graduated: {edu.year}</p>
+                  <p>{edu.desc}</p>
                   <button onClick={(e) => loadEditEducation(e, edu.id)}>
                     Edit
                   </button>

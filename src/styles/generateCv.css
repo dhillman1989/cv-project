@@ -2,6 +2,7 @@
   padding: 10vh 0 25vh 0;
   width: 100vw;
   background-color: rgb(232, 248, 255);
+  font-size: 110%;
 }
 
 .generateCv__page {
@@ -11,7 +12,17 @@
   background-color: #fff;
   box-shadow: 5px 8px 1px 1px rgb(133, 133, 133);
   margin: 25px auto;
-  padding: 5rem;
+  padding: 10rem;
+}
+
+.generateCv__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.generateCv__row > * {
+  flex: 1;
+  margin: 0 3rem 0 0;
 }
 
 .generateCv h1 {
@@ -29,6 +40,10 @@
 .generateCv h3 {
   font-size: 2rem;
   text-transform: capitalize;
+}
+
+.generateCv__profile {
+  width: 75%;
 }
 
 .generateCv__personal {
@@ -69,4 +84,10 @@
   font-style: oblique;
   font-size: 1.6rem;
   text-transform: capitalize;
+}
+
+.generateCv__desc,
+.generateCv__duties {
+  margin-top: 1rem;
+  margin-bottom: 6rem;
 }
