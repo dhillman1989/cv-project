@@ -26,6 +26,10 @@ ul {
 }
 
 @media only screen and (max-width: 400px) {
+  html {
+    font-size: 50%;
+  }
+
   #App {
     flex-direction: column;
     align-items: stretch;
