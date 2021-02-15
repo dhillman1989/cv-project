@@ -15,7 +15,7 @@ class EditExperience extends Component {
         <form onSubmit={(e) => updateExperience(e, data.editExpId)}>
           <h3>EDIT EXPERIENCE</h3>
           <br />
-          <label htmlFor="editCompany">School</label>
+          <label htmlFor="editCompany">Company</label>
           <input
             id="editCompany"
             name="editCompany"
@@ -23,7 +23,7 @@ class EditExperience extends Component {
             onChange={changeInput}
             required
           />
-          <label htmlFor="editJobTitle">Subject</label>
+          <label htmlFor="editJobTitle">Job Title</label>
           <input
             id="editJobTitle"
             name="editJobTitle"
@@ -31,14 +31,14 @@ class EditExperience extends Component {
             onChange={changeInput}
             required
           />
-          <label htmlFor="editDuties">Description</label>
+          <label htmlFor="editDuties">Duties</label>
           <textarea
             id="editDuties"
             name="editDuties"
             value={data.editDuties}
             onChange={changeInput}
           />
-          <label htmlFor="editYearFrom">Year</label>
+          <label htmlFor="editYearFrom">Year From</label>
           <input
             id="editYearFrom"
             name="editYearFrom"
@@ -47,7 +47,7 @@ class EditExperience extends Component {
             required
             pattern="[0-9]{4}"
           />
-          <label htmlFor="editYearTo">Year</label>
+          <label htmlFor="editYearTo">Year To</label>
           <input
             id="editYearTo"
             name="editYearTo"

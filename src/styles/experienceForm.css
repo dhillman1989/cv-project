@@ -32,10 +32,10 @@
 
 .experienceForm__completeMarker {
   color: rgb(148, 238, 14);
-  position: absolute;
+  position: sticky;
   font-size: 8rem;
   bottom: 3rem;
-  right: 3rem;
+  left: calc(100% - 11rem);
   text-shadow: 2px 1px 4px rgb(114, 161, 43);
 }
 

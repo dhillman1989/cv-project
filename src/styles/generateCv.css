@@ -6,9 +6,11 @@
 }
 
 .generateCv__page {
-  width: 60vw;
-  height: 80vw;
+  width: 84rem;
+  height: auto;
+  min-height: 116rem;
   border: 1px solid #000;
+  font-size: 1.8rem;
   background-color: #fff;
   box-shadow: 5px 8px 1px 1px rgb(133, 133, 133);
   margin: 25px auto;
@@ -27,11 +29,11 @@
 
 .generateCv h1 {
   text-transform: capitalize;
-  font-size: 6rem;
+  font-size: 5rem;
 }
 
 .generateCv h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   margin-bottom: 2rem;
   text-decoration: underline;
   text-transform: capitalize;
@@ -43,7 +45,7 @@
 }
 
 .generateCv__profile {
-  width: 75%;
+  width: 90%;
 }
 
 .generateCv__personal {
@@ -90,4 +92,18 @@
 .generateCv__duties {
   margin-top: 1rem;
   margin-bottom: 6rem;
+}
+
+@media only screen and (max-width: 700px) {
+  .generateCv {
+    padding-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+  .generateCv__page {
+    margin: 0;
+    transform-origin: 0 0;
+    transform: scale(0.5);
+  }
 }
