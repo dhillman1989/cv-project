@@ -53,6 +53,14 @@ class App extends Component {
     };
   }
 
+  componentDidMount = () => {
+    window.addEventListener("beforeunload", this.handleUnload);
+  };
+
+  componentWillUnmount = () => {
+    window.removeEventListener("beforeunload", this.handleUnload);
+  };
+
   changeInput = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };

@@ -39,3 +39,11 @@
   right: 3rem;
   text-shadow: 2px 1px 4px rgb(114, 161, 43);
 }
+
+@media only screen and (max-width: 700px) {
+  .personalForm {
+    height: auto;
+    max-height: 10000px;
+    overflow: auto;
+  }
+}

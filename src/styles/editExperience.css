@@ -1,12 +1,12 @@
 .editExperience {
   width: 100vw;
   height: 100vh;
-  padding: 4rem;
+  padding: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: 50;
@@ -18,8 +18,7 @@
   flex-direction: column;
   background-color: #fff;
   padding: 3rem;
-  width: 40%;
-  min-width: 350px;
+  min-width: 90vw;
 }
 
 .editExperience input,

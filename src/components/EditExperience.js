@@ -12,14 +12,16 @@ class EditExperience extends Component {
     const { data, changeInput, updateExperience } = this.props;
     return (
       <div className="editExperience">
-        EDIT Experience
         <form onSubmit={(e) => updateExperience(e, data.editExpId)}>
+          <h3>EDIT EXPERIENCE</h3>
+          <br />
           <label htmlFor="editCompany">School</label>
           <input
             id="editCompany"
             name="editCompany"
             value={data.editCompany}
             onChange={changeInput}
+            required
           />
           <label htmlFor="editJobTitle">Subject</label>
           <input
@@ -27,6 +29,7 @@ class EditExperience extends Component {
             name="editJobTitle"
             value={data.editJobTitle}
             onChange={changeInput}
+            required
           />
           <label htmlFor="editDuties">Description</label>
           <textarea
@@ -41,6 +44,8 @@ class EditExperience extends Component {
             name="editYearFrom"
             value={data.editYearFrom}
             onChange={changeInput}
+            required
+            pattern="[0-9]{4}"
           />
           <label htmlFor="editYearTo">Year</label>
           <input
@@ -48,6 +53,8 @@ class EditExperience extends Component {
             name="editYearTo"
             value={data.editYearTo}
             onChange={changeInput}
+            required
+            pattern="[0-9]{4}"
           />
           <button>Confirm Changes</button>
         </form>

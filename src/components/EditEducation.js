@@ -12,14 +12,16 @@ class EditEducation extends Component {
     const { data, changeInput, updateEducation } = this.props;
     return (
       <div className="editEducation">
-        EDIT EDUCATION
         <form onSubmit={(e) => updateEducation(e, data.editEduId)}>
+          <h3>EDIT EDUCATION</h3>
+          <br />
           <label htmlFor="editSchool">School</label>
           <input
             id="editSchool"
             name="editSchool"
             value={data.editSchool}
             onChange={changeInput}
+            required
           />
           <label htmlFor="editSubject">Subject</label>
           <input
@@ -27,6 +29,7 @@ class EditEducation extends Component {
             name="editSubject"
             value={data.editSubject}
             onChange={changeInput}
+            required
           />
           <label htmlFor="editDesc">Description</label>
           <textarea
@@ -41,6 +44,8 @@ class EditEducation extends Component {
             name="editYear"
             value={data.editYear}
             onChange={changeInput}
+            required
+            pattern="[0-9]{4}"
           />
           <button>Confirm Changes</button>
         </form>

@@ -1,7 +1,6 @@
 .experienceForm {
   background-color: rgb(71, 187, 233);
   height: 80vh;
-  max-height: 80vh;
   overflow: scroll;
   flex: 1;
   position: relative;
@@ -40,10 +39,11 @@
   text-shadow: 2px 1px 4px rgb(114, 161, 43);
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 700px) {
   .experienceForm {
-    margin-bottom: 20rem;
     height: auto;
-    max-height: auto;
+    max-height: 10000px;
+    overflow: auto;
+    margin-bottom: 15rem;
   }
 }
